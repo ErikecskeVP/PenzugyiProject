@@ -1,0 +1,16 @@
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\bin\Debug\net10.0\PenzugyiProject.exe
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\bin\Debug\net10.0\PenzugyiProject.deps.json
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\bin\Debug\net10.0\PenzugyiProject.runtimeconfig.json
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\bin\Debug\net10.0\PenzugyiProject.dll
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\bin\Debug\net10.0\PenzugyiProject.pdb
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\PenzugyiProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\PenzugyiProject.AssemblyInfoInputs.cache
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\PenzugyiProject.AssemblyInfo.cs
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\PenzugyiProject.csproj.CoreCompileInputs.cache
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\PenzugyiProject.sourcelink.json
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\PenzugyiProject.dll
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\refint\PenzugyiProject.dll
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\PenzugyiProject.pdb
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\PenzugyiProject.genruntimeconfig.cache
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\ref\PenzugyiProject.dll
+C:\Users\b4nagsan\Desktop\PenzugyiProject\PenzugyiProject\PenzugyiProject\obj\Debug\net10.0\Penzugyi.16160316.Up2Date

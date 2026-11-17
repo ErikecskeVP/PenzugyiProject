@@ -1,8 +1,14 @@
+﻿Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+Console.WriteLine("$$      Pénzügyi Naplózó      $$");
+Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+Console.WriteLine();
 
 if (!File.Exists("egyenleg.txt"))
 {
     Console.Write("Add meg a kiindulási egyenleged: ");
-    while (true) { 
+    while (true)
+    {
         string egyen = Console.ReadLine();
         if (int.TryParse(egyen, out int egyenleg))
         {
@@ -17,5 +23,4 @@ if (!File.Exists("egyenleg.txt"))
     }
 }
 
-Console.WriteLine("Pénzügyi Naplózó");
 File.ReadAllText("egyenleg.txt");
