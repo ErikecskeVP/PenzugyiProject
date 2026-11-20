@@ -1,4 +1,6 @@
-﻿HashSet<string> penznemek = new() {
+﻿using System.Text;
+
+HashSet<string> penznemek = new() {
     "AED", "AFN", "ALL", "AMD", "AOA", "ARS", "AUD", "AWG", "AZN",
     "BAM", "BBD", "BDT", "BHD", "BIF", "BMD", "BND", "BOB", "BRL", "BSD",
     "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLP", "CNY", "COP",
@@ -80,6 +82,7 @@ while (true)
     Console.WriteLine();
     Console.Write("Add meg a választott menüpont számát: ");
     string choice = Console.ReadLine();
+    string tranzpath = "tranzakciok.csv";
        if (int.TryParse(choice, out int valasztas))
        {
          if (valasztas == 1)
@@ -87,10 +90,23 @@ while (true)
                 Console.WriteLine($"A jelenlegi egyenleged {globalegyenleg} {globalpenznem}");
 
             }
-            if (valasztas == 0)
+
+          if (valasztas==2)
+             {
+
+                using (StreamWriter sw = new StreamWriter(tranzpath, true, Encoding.UTF8))
+                {
+                    
+                }
+
+        }
+
+          if (valasztas == 0)
             {
                 break;
             }
+            
+            
         }
         else
         {
