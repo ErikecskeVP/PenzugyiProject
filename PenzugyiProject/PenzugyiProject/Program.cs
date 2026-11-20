@@ -65,6 +65,12 @@ if (!File.Exists("egyenleg.txt"))
         }
     }
 }
+string tranzpath = "tranzakciok.csv";
+if (!File.Exists(tranzpath))
+{
+    File.WriteAllText(tranzpath, $"tranzakció típusa;dátum;idő;összeg;miből/mire;pillanatnyi egyenleg{Environment.NewLine}");
+}
+
 
 int globalegyenleg = int.Parse(File.ReadAllText("egyenleg.txt"));
 string globalpenznem = File.ReadAllText("penznem.txt");
@@ -82,7 +88,7 @@ while (true)
     Console.WriteLine();
     Console.Write("Add meg a választott menüpont számát: ");
     string choice = Console.ReadLine();
-    string tranzpath = "tranzakciok.csv";
+    
        if (int.TryParse(choice, out int valasztas))
        {
          if (valasztas == 1)
@@ -93,13 +99,48 @@ while (true)
 
           if (valasztas==2)
              {
+                Console.Write("Add meg a tranzakció típusát (bevétel/költség): ");
+                string tipus = Console.ReadLine();
+                Console.Write("Miből jött a jővedelem/Mire költöttél? ");
+                string mire = Console.ReadLine();
+                DateTime most = DateTime.Now;
+                string datumStr = most.ToString("yyyy-MM-dd");
+                string idoStr = most.ToString("HH:mm");
 
-                using (StreamWriter sw = new StreamWriter(tranzpath, true, Encoding.UTF8))
+                if (tipus.ToLower() == "bevétel" || tipus.ToLower() == "költség")
+                 {
+                    Console.Write("Add meg a tranzakció összegét: ");
+                    string osszeg = Console.ReadLine();
+                    if (int.TryParse(osszeg, out int tranzosszeg))
+                    {
+                        if (tipus.ToLower() == "bevétel")
+                        {
+                            globalegyenleg += tranzosszeg;
+                            using (StreamWriter sw = new StreamWriter(tranzpath, true, Encoding.UTF8))
+                            {
+                                sw.WriteLine($"{tipus};{datumStr};{idoStr};{tranzosszeg};{mire};{globalegyenleg}");
+                            }
+                    }
+                        else
+                        {
+                            globalegyenleg -= tranzosszeg;
+                            using (StreamWriter sw = new StreamWriter(tranzpath, true, Encoding.UTF8))
+                            {
+                                sw.WriteLine($"{tipus};{datumStr};{idoStr};{tranzosszeg};{mire};{globalegyenleg}");
+                            }
+                    }
+                    File.WriteAllText("egyenleg.txt", $"{globalegyenleg}");
+                    }
+                    else
                 {
-                    
+                    Console.WriteLine("Csak egész számot adhatsz meg");
+                   }
                 }
-
-        }
+                else
+                {
+                Console.WriteLine("Csak bevétel vagy költség lehet a típus");
+                }
+            }
 
           if (valasztas == 0)
             {
