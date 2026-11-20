@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "J:\\PenzugyiProject\\PenzugyiProject\\",
+  "WorkspaceRootPath": "C:\\Users\\b4nagsan\\Desktop\\PenzugyiProject\\PenzugyiProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{826F2A4B-2B65-6CB2-83AA-B9C8E8EBC4FF}|PenzugyiProject\\PenzugyiProject.csproj|j:\\penzugyiproject\\penzugyiproject\\penzugyiproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{826F2A4B-2B65-6CB2-83AA-B9C8E8EBC4FF}|PenzugyiProject\\PenzugyiProject.csproj|c:\\users\\b4nagsan\\desktop\\penzugyiproject\\penzugyiproject\\penzugyiproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{826F2A4B-2B65-6CB2-83AA-B9C8E8EBC4FF}|PenzugyiProject\\PenzugyiProject.csproj|solutionrelative:penzugyiproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -14,21 +14,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{c6f34f0d-7ae5-4f3a-be61-fe0c21ae9eb8}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "J:\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\b4nagsan\\Desktop\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\Program.cs",
               "RelativeDocumentMoniker": "PenzugyiProject\\Program.cs",
-              "ToolTip": "J:\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\Program.cs",
+              "ToolTip": "C:\\Users\\b4nagsan\\Desktop\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\Program.cs",
               "RelativeToolTip": "PenzugyiProject\\Program.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAAAHUAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAmwKEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-17T08:26:59.507Z",
               "EditorCaption": ""

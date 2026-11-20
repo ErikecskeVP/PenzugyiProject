@@ -74,13 +74,14 @@ if (!File.Exists(tranzpath))
 
 int globalegyenleg = int.Parse(File.ReadAllText("egyenleg.txt"));
 string globalpenznem = File.ReadAllText("penznem.txt");
-Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$");
-Console.WriteLine("         Főmenü           ");
-Console.WriteLine("1) Egyenleg megtekintése, ");
-Console.WriteLine("2) Tranzakció rögzítése,  ");
-Console.WriteLine("3) Tranzakciók böngézése, ");
-Console.WriteLine("0) Program bezárása       ");
-Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$");
+Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+Console.WriteLine("          Főmenü           ");
+Console.WriteLine("[1]  Egyenleg megtekintése, ");
+Console.WriteLine("[2]  Tranzakció rögzítése,  ");
+Console.WriteLine("[3]  Tranzakciók böngézése, ");
+Console.WriteLine("[4]  Emlékeztetők szerkesztése, ");
+Console.WriteLine("[0]  Program bezárása       ");
+Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
 Console.WriteLine();
 while (true)
@@ -141,8 +142,48 @@ while (true)
                 Console.WriteLine("Csak bevétel vagy költség lehet a típus");
                 }
             }
+        if (valasztas == 3)
+        {
+            Console.Write("Mi alapján keress: [1] Dátum, [2] Tranzakció típusa, [0] Vissza");
+            Console.Write("Add meg a választott menüpont számát: ");
+            Console.WriteLine();
+            string choice2 = Console.ReadLine();
+            if (int.TryParse(choice2, out int valasztas2))
+            {
+                if (valasztas2 == 1)
+                {
+                    Console.WriteLine("[1] Két dátum között, [2] Pontos dátum alapján, [0] Vissza");
+                    Console.Write("Add meg a választott menüpont számát: ");
+                    string choice3 = Console.ReadLine();
+                    Console.WriteLine();
+                    if (int.TryParse(choice2, out int valasztas3))
+                    {
+                        if (valasztas3 == 1)
+                        {
 
-          if (valasztas == 0)
+                        }
+                        if (valasztas3 == 2)
+                        {
+
+                        }
+                        else { Console.WriteLine("Csak a menüben feltüntetett számokat adhatod meg"); }
+                    }
+                }
+                if (valasztas2 == 2)
+                {
+
+                }
+                else
+                {
+                    Console.WriteLine("Csak a menüben feltüntetett számokat adhatod meg");
+                }
+            }
+        }
+        if (valasztas == 4)
+        {
+
+        }
+        if (valasztas == 0)
             {
                 break;
             }
