@@ -144,6 +144,16 @@ while (true)
             }
         if (valasztas == 3)
         {
+           
+            foreach(string sor in File.ReadLines(tranzpath))
+            {
+                string tipuss=(sor.Split(";")[0]);
+                string datum=(sor.Split(";")[1]);
+                string ido=(sor.Split(";")[2]);
+                string kerossz=sor.Split(";")[3];
+                string kermire=sor.Split(";")[4];
+                string keresegyen=sor.Split(";")[5];
+            }
             Console.Write("Mi alapján keress: [1] Dátum, [2] Tranzakció típusa, [0] Vissza");
             Console.Write("Add meg a választott menüpont számát: ");
             Console.WriteLine();
@@ -156,11 +166,13 @@ while (true)
                     Console.Write("Add meg a választott menüpont számát: ");
                     string choice3 = Console.ReadLine();
                     Console.WriteLine();
+
                     if (int.TryParse(choice2, out int valasztas3))
                     {
                         if (valasztas3 == 1)
                         {
-
+                            Console.Write("add meg az első dátumot")
+                            
                         }
                         if (valasztas3 == 2)
                         {
