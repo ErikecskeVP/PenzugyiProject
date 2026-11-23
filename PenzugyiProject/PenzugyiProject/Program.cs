@@ -84,9 +84,13 @@ Console.WriteLine("[0]  Program bezárása       ");
 Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
 Console.WriteLine();
+int iteration = 0;
 while (true)
 {
+    iteration++;
     Console.WriteLine();
+    if (iteration >= 2) { 
+    Console.WriteLine("[1]  Egyenleg megtekintése, [2]  Tranzakció rögzítése, [3]  Tranzakciók böngézése, [4]  Emlékeztetők szerkesztése, [0]  Program bezárása ");}
     Console.Write("Add meg a választott menüpont számát: ");
     string choice = Console.ReadLine();
     
