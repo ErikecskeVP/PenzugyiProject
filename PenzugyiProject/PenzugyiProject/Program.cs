@@ -68,13 +68,13 @@ if (!File.Exists("egyenleg.txt"))
 string tranzpath = "tranzakciok.csv";
 if (!File.Exists(tranzpath))
 {
-    File.WriteAllText(tranzpath, $"tranzakció típusa;dátum;idő;összeg;miből/mire;pillanatnyi egyenleg{Environment.NewLine}");
+    File.WriteAllText(tranzpath, $"tranzakció típusa;dátum;idő;összeg;miből/mire;pillanatnyi egyenleg{Environment.NewLine}", new UTF8Encoding(true));
 }
 
 string emlek = "emlekezteto.csv";
 if (!File.Exists(emlek))
 {
-    File.WriteAllText(emlek, $"dátum;csinálni;osszeg{Environment.NewLine}");
+    File.WriteAllText(emlek, $"dátum;csinálni;osszeg{Environment.NewLine}", new UTF8Encoding(true));
 }
 
 DateTime nemmost = DateTime.Now;
@@ -143,7 +143,7 @@ while (true)
                     if (tipus.ToLower() == "bevétel")
                     {
                         globalegyenleg += tranzosszeg;
-                        using (StreamWriter sw = new StreamWriter(tranzpath, true, Encoding.UTF8))
+                        using (StreamWriter sw = new StreamWriter(tranzpath, true))
                         {
                             sw.WriteLine($"{tipus};{datumStr};{idoStr};{tranzosszeg};{mire};{globalegyenleg}");
                         }
@@ -151,7 +151,7 @@ while (true)
                     else
                     {
                         globalegyenleg -= tranzosszeg;
-                        using (StreamWriter sw = new StreamWriter(tranzpath, true, Encoding.UTF8))
+                        using (StreamWriter sw = new StreamWriter(tranzpath, true))
                         {
                             sw.WriteLine($"{tipus};{datumStr};{idoStr};{tranzosszeg};{mire};{globalegyenleg}");
                         }

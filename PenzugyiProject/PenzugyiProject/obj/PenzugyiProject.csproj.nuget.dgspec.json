@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b4nagsan\\Desktop\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject.csproj": {}
+    "J:\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b4nagsan\\Desktop\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject.csproj": {
+    "J:\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b4nagsan\\Desktop\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject.csproj",
+        "projectUniqueName": "J:\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject.csproj",
         "projectName": "PenzugyiProject",
-        "projectPath": "C:\\Users\\b4nagsan\\Desktop\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject.csproj",
-        "packagesPath": "C:\\Users\\b4nagsan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b4nagsan\\Desktop\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\obj\\",
+        "projectPath": "J:\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject.csproj",
+        "packagesPath": "C:\\Users\\b4edeeri\\.nuget\\packages\\",
+        "outputPath": "J:\\PenzugyiProject\\PenzugyiProject\\PenzugyiProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\b4nagsan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\b4edeeri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
