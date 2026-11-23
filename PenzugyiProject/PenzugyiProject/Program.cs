@@ -16,7 +16,7 @@ HashSet<string> penznemek = new() {
     "SLE", "SOS", "SRD", "SSP", "STN", "SVC", "SYP", "SZL", "THB", "TJS",
     "TMT", "TND", "TOP", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "USD",
     "UYU", "UZS", "VED", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XCG",
-    "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWG"
+    "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWG", "BTC"
 };  
 Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 Console.WriteLine("     Pénzügyi Naplózó      ");
@@ -53,7 +53,7 @@ if (!File.Exists("egyenleg.txt"))
     {
         Console.Write("Add meg a kiindulási egyenleged: ");
         string egyen = Console.ReadLine();
-        if (int.TryParse(egyen, out int egyenleg))
+        if (long.TryParse(egyen, out long egyenleg))
         {
             string path = "egyenleg.txt";
             File.WriteAllText(path, $"{egyenleg}");
@@ -72,7 +72,7 @@ if (!File.Exists(tranzpath))
 }
 
 
-int globalegyenleg = int.Parse(File.ReadAllText("egyenleg.txt"));
+long globalegyenleg = long.Parse(File.ReadAllText("egyenleg.txt"));
 string globalpenznem = File.ReadAllText("penznem.txt");
 Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 Console.WriteLine("          Főmenü           ");
@@ -148,32 +148,149 @@ while (true)
         }
         else if (valasztas == 3)
         {
-            bool benne = false;
-            Console.WriteLine();
-            Console.WriteLine("Mi alapján keress: [1] Dátum, [2] Tranzakció típusa, [3] Termék alapján, [0] Vissza");
-            Console.Write("Add meg a választott menüpont számát: ");
-            string choice2 = Console.ReadLine();
-            Console.WriteLine();
-            if (int.TryParse(choice2, out int valasztas2))
+            while (true)
             {
-                if (valasztas2 == 1)
+                bool benne = false;
+                Console.WriteLine();
+                Console.WriteLine("Mi alapján keress: [1] Dátum, [2] Tranzakció típusa, [3] Termék alapján, [0] Vissza");
+                Console.Write("Add meg a választott menüpont számát: ");
+                string choice2 = Console.ReadLine();
+                Console.WriteLine();
+                if (int.TryParse(choice2, out int valasztas2))
                 {
-                    Console.WriteLine("[1] Két dátum között, [2] Pontos dátum alapján, [0] Vissza");
-                    Console.Write("Add meg a választott menüpont számát: ");
-                    string choice3 = Console.ReadLine();
-                    Console.WriteLine();
-
-                    if (int.TryParse(choice3, out int valasztas3))
+                    if (valasztas2 == 1)
                     {
-                       if (valasztas3 == 1)
+                        Console.WriteLine("[1] Két dátum között, [2] Pontos dátum alapján, [0] Vissza");
+                        Console.Write("Add meg a választott menüpont számát: ");
+                        string choice3 = Console.ReadLine();
+                        
+
+                        if (int.TryParse(choice3, out int valasztas3))
                         {
+                            while (true) {
+                                if (valasztas3 == 1)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine("Ha 0-át adsz meg valamelyiknél, visszalép");
+                                    Console.Write("Add meg az első dátumot: ");
+                                    string dt1 = Console.ReadLine();
+                                    if (dt1 == "0")
+                                    {
+                                        break;
+                                    }
+                                    Console.Write("Add meg a második dátumot: ");
+                                    string dt2 = Console.ReadLine();
+                                    if (dt2 == "0")
+                                    {
+                                        break;
+                                    }
+
+
+                                    if (DateOnly.TryParse(dt1, out DateOnly datum1) && DateOnly.TryParse(dt2, out DateOnly datum2))
+                                    {
+                                        foreach (string sor in File.ReadLines(tranzpath).Skip(1))
+                                        {
+                                            string[] adatok = sor.Split(";");
+                                            string tipuss = (adatok[0]);
+                                            string datum = (adatok[1]);
+                                            string ido = (adatok[2]);
+                                            string kerossz = (adatok[3]);
+                                            string kermire = (adatok[4]);
+                                            string keresegyen = (adatok[5]);
+
+
+
+                                            DateOnly alakdatum = DateOnly.Parse(datum);
+
+                                            if (datum2 >= alakdatum && datum1 <= alakdatum || datum1 >= alakdatum && datum2 <= alakdatum)
+                                            {
+                                                benne = true;
+                                                Console.WriteLine();
+                                                Console.WriteLine($"A tranzakcó típusa: {tipuss}");
+                                                Console.WriteLine($"Dátum: {datum}");
+                                                Console.WriteLine($"Idő: {ido}");
+                                                Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
+                                                Console.WriteLine($"Mire/Miből: {kermire}");
+                                            }
+
+                                        }
+                                        if (!benne)
+                                        {
+                                            Console.WriteLine("Ez a kettő dátum között nincs rögzített tranzakció.");
+                                        }
+                                        
+                                    }
+
+                                    else
+                                    {
+                                        Console.WriteLine("Hibás Dátum!");
+                                    }
+
+                                }
+                                else if (valasztas3 == 2)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine("Ha 0-át adsz meg, visszalép");
+                                    Console.Write("Add meg a dátumot: ");
+                                    string dt = Console.ReadLine();
+                                    if (DateOnly.TryParse(dt, out DateOnly date))
+                                    {
+                                        foreach (string sor in File.ReadLines(tranzpath).Skip(1))
+                                        {
+                                            string[] adatok = sor.Split(";");
+                                            string tipuss = (adatok[0]);
+                                            string datum = (adatok[1]);
+                                            string ido = (adatok[2]);
+                                            string kerossz = (adatok[3]);
+                                            string kermire = (adatok[4]);
+                                            string keresegyen = (adatok[5]);
+                                            DateOnly alkdatum = DateOnly.Parse(datum);
+
+                                            if (date == alkdatum)
+                                            {
+                                                benne = true;
+                                                Console.WriteLine();
+                                                Console.WriteLine($"A tranzakcó típusa: {tipuss}");
+                                                Console.WriteLine($"Dátum: {datum}");
+                                                Console.WriteLine($"Idő: {ido}");
+                                                Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
+                                                Console.WriteLine($"Mire/Miből: {kermire}");
+                                            }
+                                        }
+                                        if (!benne)
+                                        {
+                                            Console.WriteLine("Ezzel a dátummal nincs rögzített tranzakció.");
+                                        }
+                                        
+                                    }
+                                    else if (dt == "0")
+                                    {
+                                        break;
+                                    }
+                                    else { Console.WriteLine("Hibás dátum!"); }
+
+                                }
+                                else if (valasztas3 == 0)
+                                {
+                                    break;
+                                }
+                                else { Console.WriteLine("Csak a menüben feltüntetett számokat adhatod meg"); }
+                            }
+                        }
                             
-                            Console.Write("Add meg az első dátumot: ");
-                            string dt1 = Console.ReadLine();
-                            Console.Write("Add meg a második dátumot: ");
-                            string dt2 = Console.ReadLine();
-                            if (DateOnly.TryParse(dt1, out DateOnly datum1) && DateOnly.TryParse(dt2, out DateOnly datum2))
+                    }
+                    else if (valasztas2 == 2)
+                    {
+                        while (true) { 
+                        Console.WriteLine("[1] Bevétel, [2] Költség, [0] Vissza");
+                        Console.Write("Add meg a választott menüpont számát: ");
+                        string tipus = Console.ReadLine();
+                        if (int.TryParse(tipus, out int tipusInt))
+                        {
+                            if (tipusInt == 1)
                             {
+                                tipus = "bevétel";
+
                                 foreach (string sor in File.ReadLines(tranzpath).Skip(1))
                                 {
                                     string[] adatok = sor.Split(";");
@@ -183,184 +300,108 @@ while (true)
                                     string kerossz = (adatok[3]);
                                     string kermire = (adatok[4]);
                                     string keresegyen = (adatok[5]);
-                                    
 
-
-                                    DateOnly alakdatum = DateOnly.Parse(datum);
-
-                                    if (datum2 >= alakdatum && datum1 <= alakdatum || datum1 >= alakdatum && datum2 <= alakdatum)
+                                    if (tipuss == tipus)
                                     {
                                         benne = true;
                                         Console.WriteLine();
-                                        Console.WriteLine($"A tranzakcó típusa: {tipuss}");
+                                        Console.WriteLine($"A tranzakció típusa: {tipuss}");
                                         Console.WriteLine($"Dátum: {datum}");
                                         Console.WriteLine($"Idő: {ido}");
                                         Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
                                         Console.WriteLine($"Mire/Miből: {kermire}");
                                     }
-                                    
                                 }
                                 if (!benne)
                                 {
-                                    Console.WriteLine("Ez a kettő dátum között nincs rögzített tranzakció.");
+                                    Console.WriteLine("Ezzel a típussal nincs rögzített tranzakció.");
                                 }
-
                             }
-                            
+                            else if (tipusInt == 2)
+                            {
+                                tipus = "költség";
+
+                                foreach (string sor in File.ReadLines(tranzpath).Skip(1))
+                                {
+                                    string[] adatok = sor.Split(";");
+                                    string tipuss = (adatok[0]);
+                                    string datum = (adatok[1]);
+                                    string ido = (adatok[2]);
+                                    string kerossz = (adatok[3]);
+                                    string kermire = (adatok[4]);
+                                    string keresegyen = (adatok[5]);
+
+                                    if (tipuss == tipus)
+                                    {
+                                        benne = true;
+                                        Console.WriteLine();
+                                        Console.WriteLine($"A tranzakció típusa: {tipuss}");
+                                        Console.WriteLine($"Dátum: {datum}");
+                                        Console.WriteLine($"Idő: {ido}");
+                                        Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
+                                        Console.WriteLine($"Mire/Miből: {kermire}");
+                                    }
+                                }
+                                if (!benne)
+                                {
+                                    Console.WriteLine("Ezzel a típussal nincs rögzített tranzakció.");
+                                }
+                            }
+                            else if (tipusInt == 0)
+                                {
+                                    break;
+                                }
                             else
                             {
-                                Console.WriteLine("Hibás Dátum!");
+                                Console.WriteLine("Csak a menüben feltüntetett számokat adhatod meg");
                             }
-                    
-                        }
-                        else if (valasztas3 == 2)
-                        {
-                            Console.Write("Add meg a dátumot: ");
-                            string dt=Console.ReadLine();
-                            if (DateOnly.TryParse(dt, out DateOnly date)){
-                                foreach (string sor in File.ReadLines(tranzpath).Skip(1))
-                                {
-                                    string[] adatok = sor.Split(";");
-                                    string tipuss = (adatok[0]);
-                                    string datum = (adatok[1]);
-                                    string ido = (adatok[2]);
-                                    string kerossz = (adatok[3]);
-                                    string kermire = (adatok[4]);
-                                    string keresegyen = (adatok[5]);
-                                    DateOnly alkdatum = DateOnly.Parse(datum);
-
-                                    if (date == alkdatum)
-                                    {
-                                        benne = true;
-                                        Console.WriteLine();
-                                        Console.WriteLine($"A tranzakcó típusa: {tipuss}");
-                                        Console.WriteLine($"Dátum: {datum}");
-                                        Console.WriteLine($"Idő: {ido}");
-                                        Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
-                                        Console.WriteLine($"Mire/Miből: {kermire}");
-                                    }
-                                }
-                                if (!benne)
-                                {
-                                    Console.WriteLine("Ezzel a dátummal nincs rögzített tranzakció.");
-                                }
                             }
-                            else { Console.WriteLine("Hibás dátum!"); }
-
                         }
-                        else { Console.WriteLine("Csak a menüben feltüntetett számokat adhatod meg"); }
+                        
                     }
-                }
-                else if (valasztas2 == 2)
-                {
-                    Console.WriteLine("[1] Bevétel, [2] Költség, [0] Vissza");
-                    Console.Write("Add meg a választott menüpont számát: ");
-                    string tipus = Console.ReadLine();
-                    if (int.TryParse(tipus, out int tipusInt))
+                    else if (valasztas2 == 3)
                     {
-                        if (tipusInt == 1)
+                        Console.Write("Add meg a termék nevét: ");
+                        string termek = Console.ReadLine();
+
+                        foreach (string sor in File.ReadLines(tranzpath).Skip(1))
                         {
-                            tipus = "bevétel";
+                            string[] adatok = sor.Split(";");
+                            string tipuss = (adatok[0]);
+                            string datum = (adatok[1]);
+                            string ido = (adatok[2]);
+                            string kerossz = (adatok[3]);
+                            string kermire = (adatok[4]);
+                            string keresegyen = (adatok[5]);
 
-                            foreach (string sor in File.ReadLines(tranzpath).Skip(1))
+                            if (kermire.ToLower().Contains(termek.ToLower()))
                             {
-                                string[] adatok = sor.Split(";");
-                                string tipuss = (adatok[0]);
-                                string datum = (adatok[1]);
-                                string ido = (adatok[2]);
-                                string kerossz = (adatok[3]);
-                                string kermire = (adatok[4]);
-                                string keresegyen = (adatok[5]);
-
-                                if (tipuss == tipus)
-                                {
-                                    benne = true;
-                                    Console.WriteLine();
-                                    Console.WriteLine($"A tranzakció típusa: {tipuss}");
-                                    Console.WriteLine($"Dátum: {datum}");
-                                    Console.WriteLine($"Idő: {ido}");
-                                    Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
-                                    Console.WriteLine($"Mire/Miből: {kermire}");
-                                }
-                            }
-                            if (!benne)
-                            {
-                                Console.WriteLine("Ezzel a típussal nincs rögzített tranzakció.");
+                                benne = true;
+                                Console.WriteLine();
+                                Console.WriteLine($"A tranzakció típusa: {tipuss}");
+                                Console.WriteLine($"Dátum: {datum}");
+                                Console.WriteLine($"Idő: {ido}");
+                                Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
+                                Console.WriteLine($"Mire/Miből: {kermire}");
                             }
                         }
-                        else if (tipusInt == 2)
+                        if (!benne)
                         {
-                            tipus = "költség";
-
-                            foreach (string sor in File.ReadLines(tranzpath).Skip(1))
-                            {
-                                string[] adatok = sor.Split(";");
-                                string tipuss = (adatok[0]);
-                                string datum = (adatok[1]);
-                                string ido = (adatok[2]);
-                                string kerossz = (adatok[3]);
-                                string kermire = (adatok[4]);
-                                string keresegyen = (adatok[5]);
-
-                                if (tipuss == tipus)
-                                {
-                                    benne = true;
-                                    Console.WriteLine();
-                                    Console.WriteLine($"A tranzakció típusa: {tipuss}");
-                                    Console.WriteLine($"Dátum: {datum}");
-                                    Console.WriteLine($"Idő: {ido}");
-                                    Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
-                                    Console.WriteLine($"Mire/Miből: {kermire}");
-                                }
-                            }
-                            if (!benne)
-                            {
-                                Console.WriteLine("Ezzel a típussal nincs rögzített tranzakció.");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Csak a menüben feltüntetett számokat adhatod meg");
+                            Console.WriteLine("Ezzel a termékkel nincs rögzített tranzakció.");
                         }
                     }
-                }
-                else if(valasztas2 == 3)
-                {
-                    Console.Write("Add meg a termék nevét: ");
-                    string termek = Console.ReadLine();
-
-                    foreach (string sor in File.ReadLines(tranzpath).Skip(1))
+                    else if (valasztas2 == 0)
                     {
-                        string[] adatok = sor.Split(";");
-                        string tipuss = (adatok[0]);
-                        string datum = (adatok[1]);
-                        string ido = (adatok[2]);
-                        string kerossz = (adatok[3]);
-                        string kermire = (adatok[4]);
-                        string keresegyen = (adatok[5]);
-
-                        if (kermire.ToLower().Contains(termek.ToLower()))
-                        {
-                            benne = true;
-                            Console.WriteLine();
-                            Console.WriteLine($"A tranzakció típusa: {tipuss}");
-                            Console.WriteLine($"Dátum: {datum}");
-                            Console.WriteLine($"Idő: {ido}");
-                            Console.WriteLine($"Összege: {kerossz} {globalpenznem}");
-                            Console.WriteLine($"Mire/Miből: {kermire}");
-                        }
+                        break;
                     }
-                    if (!benne)
+                    else
                     {
-                        Console.WriteLine("Ezzel a termékkel nincs rögzített tranzakció.");
+                        Console.WriteLine("Csak a menüben feltüntetett számokat adhatod meg");
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Csak a menüben feltüntetett számokat adhatod meg");
                 }
             }
         }
+            
         else if (valasztas == 4)
         {
 
