@@ -74,7 +74,7 @@ if (!File.Exists(tranzpath))
 string emlek = "emlekezteto.csv";
 if (!File.Exists(emlek))
 {
-    File.WriteAllText(emlek, $"dátum;csinálni;osszeg{Environment.NewLine}", new UTF8Encoding(true));
+    File.WriteAllText(emlek, $"dátum;csinálni;összeg{Environment.NewLine}", new UTF8Encoding(true));
 }
 
 DateTime nemmost = DateTime.Now;
@@ -128,14 +128,16 @@ while (true)
         {
             Console.Write("Add meg a tranzakció típusát (bevétel/költség): ");
             string tipus = Console.ReadLine();
-            Console.Write("Miből jött a jővedelem/Mire költöttél? ");
-            string mire = Console.ReadLine();
-            DateTime most = DateTime.Now;
-            string datumStr = most.ToString("yyyy-MM-dd");
-            string idoStr = most.ToString("HH:mm");
+
 
             if (tipus.ToLower() == "bevétel" || tipus.ToLower() == "költség")
             {
+
+                Console.Write("Miből jött a jővedelem/Mire költöttél? ");
+                string mire = Console.ReadLine();
+                DateTime most = DateTime.Now;
+                string datumStr = most.ToString("yyyy-MM-dd");
+                string idoStr = most.ToString("HH:mm");
                 Console.Write("Add meg a tranzakció összegét: ");
                 string osszeg = Console.ReadLine();
                 if (int.TryParse(osszeg, out int tranzosszeg) && tranzosszeg > 0)
@@ -147,6 +149,7 @@ while (true)
                         {
                             sw.WriteLine($"{tipus};{datumStr};{idoStr};{tranzosszeg};{mire};{globalegyenleg}");
                         }
+                        Console.WriteLine("Rögzítve");
                     }
                     else
                     {
@@ -155,12 +158,13 @@ while (true)
                         {
                             sw.WriteLine($"{tipus};{datumStr};{idoStr};{tranzosszeg};{mire};{globalegyenleg}");
                         }
+                        Console.WriteLine("Rögzítve");
                     }
                     File.WriteAllText("egyenleg.txt", $"{globalegyenleg}");
                 }
                 else
                 {
-                    Console.WriteLine("Csak egész számot adhatsz meg");
+                    Console.WriteLine("Csak pozitív egész számot adhatsz meg");
                 }
             }
             else
@@ -428,8 +432,30 @@ while (true)
 
         else if (valasztas == 4)
         {
-            Console.WriteLine("Most nem működik, nézz vissza később!");
+            Console.Write("Add meg a dátumot amire emlékesztetőt akarsz tűzni: ");
+            string datestring = Console.ReadLine();
+            if (DateOnly.TryParse(datestring, out DateOnly emDatum))
+            {
+                Console.Write("Add meg az emlékesztető címkéjét: ");
+                string csinalni = Console.ReadLine();
+                Console.Write("Add meg fizetendő összeget: ");
+                string osszeg = Console.ReadLine();
+                if (int.TryParse(osszeg, out int osszeg2))
+                {
+                    string emdatum2 = emDatum.ToString("yyyy-MM-dd");
+                    using (StreamWriter sw = new StreamWriter(emlek, true))
+                    {
+                        sw.WriteLine($"{emdatum2};{csinalni};{osszeg}");
+                    }
+                    Console.WriteLine("Rögzítve");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Hibás dátum");
+            }
         }
+
         else if (valasztas == 0)
         {
             break;
