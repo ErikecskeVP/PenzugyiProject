@@ -78,7 +78,7 @@ if (!File.Exists(emlek))
 }
 
 DateTime nemmost = DateTime.Now;
-string nemdatumStr = nemmost.ToString("yyyy-MM-dd");
+string nemdatumStr = nemmost.ToString("yyyy.MM.dd");
 long globalegyenleg = long.Parse(File.ReadAllText("egyenleg.txt"));
 string globalpenznem = File.ReadAllText("penznem.txt");
 
