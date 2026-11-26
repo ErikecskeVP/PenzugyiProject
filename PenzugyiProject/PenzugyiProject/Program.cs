@@ -136,11 +136,11 @@ while (true)
                 Console.Write("Miből jött a jővedelem/Mire költöttél? ");
                 string mire = Console.ReadLine();
                 DateTime most = DateTime.Now;
-                string datumStr = most.ToString("yyyy-MM-dd");
+                string datumStr = most.ToString("yyyy.MM.dd");
                 string idoStr = most.ToString("HH:mm");
                 Console.Write("Add meg a tranzakció összegét: ");
                 string osszeg = Console.ReadLine();
-                if (int.TryParse(osszeg, out int tranzosszeg) && tranzosszeg > 0)
+                if (long.TryParse(osszeg, out long tranzosszeg) && tranzosszeg > 0)
                 {
                     if (tipus.ToLower() == "bevétel")
                     {
@@ -440,14 +440,18 @@ while (true)
                 string csinalni = Console.ReadLine();
                 Console.Write("Add meg fizetendő összeget: ");
                 string osszeg = Console.ReadLine();
-                if (int.TryParse(osszeg, out int osszeg2))
+                if (long.TryParse(osszeg, out long osszeg2) && osszeg2>0)
                 {
-                    string emdatum2 = emDatum.ToString("yyyy-MM-dd");
+                    string emdatum2 = emDatum.ToString("yyyy.MM.dd");
                     using (StreamWriter sw = new StreamWriter(emlek, true))
                     {
                         sw.WriteLine($"{emdatum2};{csinalni};{osszeg}");
                     }
                     Console.WriteLine("Rögzítve");
+                }
+                else
+                {
+                    Console.WriteLine("Csak pozitív egész számot adhatsz meg");
                 }
             }
             else

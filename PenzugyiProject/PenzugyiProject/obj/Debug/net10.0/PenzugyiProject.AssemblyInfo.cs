@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PenzugyiProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce70a8f8ede098265ed5260f3fa7fa4b30a90594")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8b3814df5641c2389e4bb0b2a482c81e1d8c267")]
 [assembly: System.Reflection.AssemblyProductAttribute("PenzugyiProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PenzugyiProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
