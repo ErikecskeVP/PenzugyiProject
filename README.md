@@ -1,5 +1,7 @@
 # **Pénzügyi napló**
 
+#### Nagy Sándor Márk és Édes Erik készítette
+
 ## **Mit is csinál?**
 
 - A programunkban könnyen tudod kezelni a pénzügyeidet. 
@@ -25,7 +27,7 @@
 
 ## **Egyenleg megtekintése**
 
-- Itt láthatod azt az egyenleget, amit az első indításnál beirtál, és ugyanúgy változik az összes kiadással és bevétellel, így mindig az aktuális egyenlegedet látod.
+- Itt láthatod azt az egyenleget, amit az első indításnál beirtál, és <mark>ugyanúgy változik az összes kiadással és bevétellel, így mindig az aktuális egyenlegedet látod.</mark>
 ----
 
 ## **Tranzakció rögzítése**
@@ -58,3 +60,14 @@
 ## **Program bezárása**
 
 - Nevéből adodóan bezárja a programot.
+
+----
+
+## **Rendszerkövetelmények**
+
+- OS: Windows 10 / Windows 11
+- Min RAM: 2GB
+- Min Tárhely: 256MB
+- Min Processzor: x86 / x64, 1GHz órajel és 2 mag
+----
+
